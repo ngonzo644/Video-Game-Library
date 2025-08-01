@@ -45,6 +45,8 @@ app.post('/games', async (req, res) =>{
       },
       body: req.body.query
     });
+
+    
     const text= await resG.text();
 
     if (!resG.ok){
