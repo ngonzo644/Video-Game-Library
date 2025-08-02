@@ -4,15 +4,23 @@ import Header from './components/Header.jsx'
 import {useEffect, useState} from 'react'
 
 
-function App() {
 
+
+function App() {
+  // created state for search bar
+  const [query, setQuery] = useState('');
+
+  // whenever query(user input) changes, run the API fetch through my backend
   useEffect( ()=>{
+
+  if (!query) return;
+
   const getGames = async ()=>{
     const res = await fetch('http://localhost:3000/games', {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({query: `search "Halo"; 
-      cover.url, first_release_date, genres.name, rating; limit 5;`})
+      body: JSON.stringify({query: `search "${query}"; 
+      fields name; limit 5;`})
 
     });
 
@@ -21,12 +29,12 @@ function App() {
   }
 
   getGames();
-}, []);
+}, [query]);
 
 
   return (
     <>
-      <Header/>
+      <Header query={query} setQuery={setQuery}/>
     </>
   )
 }
