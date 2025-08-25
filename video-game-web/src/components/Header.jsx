@@ -15,7 +15,7 @@ const Header = ({query, setQuery, games}) => {
     <>
       <div className='text-center flex flex-row justify-between bg-gray-800 p-10'>
         <div className='flex justify-start text-white'>
-        hello
+        Video Game Library
         </div>
       <div className='flex flex-1 justify-center text-white'>
         <form action="" className='w-full max-w-md'>
@@ -24,11 +24,12 @@ const Header = ({query, setQuery, games}) => {
             <input 
               type="text" 
               className='w-full pl-10 pr-3 py-2 border-solid border-white text-black rounded-2xl bg-white font-semibold placeholder-gray-500 ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2' 
-              placeholder='Search game(s)' 
+              placeholder='Search game(s)...' 
               value={query} 
               onChange={gameInput} 
               autoComplete="off"
             />
+            {/* check if the query w/o spaces is empty. If not, show autocomplete, if it is, show 'no games found' */}
             {query.trim() !== '' && (
               games.length > 0 ? (
                 <ul className='border overflow-auto h-60'>
@@ -49,7 +50,7 @@ const Header = ({query, setQuery, games}) => {
         </form>
       </div>
         <div className='flex text-center text-white shrink'>
-        uh
+        Filter
         </div>
       </div>
     </>  
