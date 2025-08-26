@@ -46,9 +46,9 @@ useEffect (()=>{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: ` 
-        fields name, first_release_date, total_rating, total_rating_count, follows;
-        where first_release_date < ${today} & first_release_date > ${month}; sort total_rating_count desc;
-        limit 10;`})
+        fields name, first_release_date, total_rating, total_rating_count, follows, cover.image_id;
+        where first_release_date < ${today} & first_release_date > ${month} &total_rating>80; sort total_rating_count desc;
+        limit 12;`})
   
       });
   
@@ -70,7 +70,7 @@ useEffect (()=>{
         fields name, total_rating, total_rating_count, cover.image_id;
         where total_rating > 90; 
         sort total_rating_count desc;
-        limit 10;`})
+        limit 15;`})
   
       });
   
