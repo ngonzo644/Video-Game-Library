@@ -3,6 +3,11 @@ import viteLogo from '/vite.svg'
 import Header from './components/Header.jsx'
 import {useEffect, useState} from 'react'
 import Body from './components/Body.jsx'
+import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom'
+import MainLayout from './layouts/MainLayout.jsx'
+import HomePage from './pages/HomePage.jsx'
+import GameInfo from './pages/GameInfo.jsx'
+
 
 
 
@@ -48,7 +53,7 @@ useEffect (()=>{
         body: JSON.stringify({query: ` 
         fields name, first_release_date, total_rating, total_rating_count, follows, cover.image_id;
         where first_release_date < ${today} & first_release_date > ${month} &total_rating>80; sort total_rating_count desc;
-        limit 12;`})
+        limit 9;`})
   
       });
   
@@ -70,7 +75,7 @@ useEffect (()=>{
         fields name, total_rating, total_rating_count, cover.image_id;
         where total_rating > 90; 
         sort total_rating_count desc;
-        limit 15;`})
+        limit 9;`})
   
       });
   
@@ -83,11 +88,17 @@ useEffect (()=>{
   getGoat();
 }, []); 
 
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
+      <Route index element={<HomePage trend={trend} goat={goat}/>}/>
+      <Route path='game' element={<GameInfo/>}/>
+
+    </Route>
+  ))
+
   return (
-    <>
-      <Header query={query} setQuery={setQuery} games={games}/>
-      <Body trend={trend} goat={goat}/>
-    </>
+    <RouterProvider router={router}/>
+
   )
 }
 

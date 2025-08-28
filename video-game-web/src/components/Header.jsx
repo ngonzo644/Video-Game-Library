@@ -13,6 +13,7 @@ const Header = ({query, setQuery, games}) => {
 
   return (
     <>
+    <div className="fixed z-100 w-full">
       <div className='text-center flex flex-row justify-between bg-gray-800 p-10'>
         <div className='flex justify-start text-white'>
         Video Game Library
@@ -52,6 +53,7 @@ const Header = ({query, setQuery, games}) => {
         <div className='flex text-center text-white shrink'>
         Filter
         </div>
+      </div>
       </div>
     </>  
     )
