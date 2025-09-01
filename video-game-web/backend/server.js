@@ -63,5 +63,31 @@ app.post('/games', async (req, res) =>{
   }
 });
 
+app.post('/genres', async(req, res) =>{
+  try{
+    const resG = await fetch('https://api.igdb.com/v4/genres', {
+      method: 'POST',
+      headers: {
+        'Client-ID': clientId,
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json'
+      },
+      body: req.body.query 
+    });
+
+    const text = await resG.text();
+
+    if (!resG.ok) {
+      console.error('uhhh:', text);
+      return res.status(resG.status).send(text);
+    }
+
+    const genres = JSON.parse(text);
+    res.json(genres);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
