@@ -6,9 +6,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 
-import fs from 'fs';
-
-
 
 
 dotenv.config();
@@ -99,15 +96,10 @@ app.post('/genres', async(req, res) =>{
 
 // app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
-const fileName = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(fileName);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-const distPath = path.join(__dirname, '../frontend/dist/index.html');
-console.log('Looking for index.html at:', distPath, 'Exists?', fs.existsSync(distPath));
-
-
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
