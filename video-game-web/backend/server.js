@@ -3,6 +3,8 @@ import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 
 dotenv.config();
@@ -93,10 +95,13 @@ app.post('/genres', async(req, res) =>{
 
 app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
-app.use(express.static(path.join('backend', '../frontend/build')));
+const fileName = fileURLToPath(import.meta.url);
+const dirName = path.dirname(fileName);
+
+app.use(express.static(path.join(dirName, '../frontend/build')));
 
 app.get('/.*/', (req, res) => {
-  res.sendFile(path.join('backend', '../frontend/build/index.html'));
+  res.sendFile(path.join(dirName, '../frontend/build/index.html'));
 });
 
 app.listen(process.env.PORT || 3000, () => {
