@@ -21,7 +21,7 @@ function App() {
   const [genres, setGenres] = useState([]);
 
   //if its on render, it'll load it into the env
-  const API_URL = process.env.API_URL || "http://localhost:3000";
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 
   const searchTerm = "Stealth";
