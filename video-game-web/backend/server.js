@@ -6,6 +6,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 
+import fs from 'fs';
+
+
 
 
 dotenv.config();
@@ -100,6 +103,10 @@ const fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(fileName);
 
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+const distPath = path.join(__dirname, '../frontend/dist/index.html');
+console.log('Looking for index.html at:', distPath, 'Exists?', fs.existsSync(distPath));
+
 
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
