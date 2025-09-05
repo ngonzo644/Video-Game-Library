@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 
 
 
+
 dotenv.config();
 
 const app = express();
@@ -93,18 +94,18 @@ app.post('/genres', async(req, res) =>{
   }
 });
 
-app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
+// app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
 const fileName = fileURLToPath(import.meta.url);
-const dirName = path.dirname(fileName);
+const __dirname = path.dirname(fileName);
 
-app.use(express.static(path.join(dirName, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(dirName, '../frontend/dist/index.html'));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Server running...');
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
 })
 
