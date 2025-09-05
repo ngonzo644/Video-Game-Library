@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {CLIENT_ID, CLIENT_SECRET} from '/etc/secrets/.env'
 
 
 
@@ -17,8 +18,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-const clientId =  import.meta.env.VITE_CLIENT_ID|| process.env.CLIENT_ID;
-const clientSecret = import.meta.env.VITE_CLIENT_SECRET || process.env.CLIENT_SECRET;
+const clientId =  CLIENT_ID || process.env.CLIENT_ID;
+const clientSecret = CLIENT_SECRET || process.env.CLIENT_SECRET;
 
 let token = null;
 
