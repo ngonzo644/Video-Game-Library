@@ -91,3 +91,13 @@ app.post('/genres', async(req, res) =>{
 
 app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running...');
+})
+
