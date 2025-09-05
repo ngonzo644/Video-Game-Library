@@ -20,11 +20,15 @@ function App() {
   const [fps, setFps] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  //if its on render, it'll load it into the env
+  const API_URL = process.env.API_URL || "http://localhost:3000";
+
+
   const searchTerm = "Stealth";
 
   useEffect(() => {
     const fetchGenres = async () => {
-        const res = await fetch("http://localhost:3000/genres", {
+        const res = await fetch(`${API_URL}/genres`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -49,7 +53,7 @@ function App() {
   if (!query) return;
 
   const getGames = async ()=>{
-    const result = await fetch('http://localhost:3000/games', {
+    const result = await fetch(`${API_URL}/games`, {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({query: `search "${query}"; 
@@ -71,7 +75,7 @@ const month = today-60*60*24*30;
 //  for trending games
 useEffect (()=>{
   const getTrend = async ()=>{
-    const result = await fetch('http://localhost:3000/games', {
+    const result = await fetch(`${API_URL}/games`, {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: ` 
@@ -92,7 +96,7 @@ useEffect (()=>{
 //greatest of all time
 useEffect (()=>{
   const getGoat = async ()=>{
-    const result = await fetch('http://localhost:3000/games', {
+    const result = await fetch(`${API_URL}/games`, {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: ` 
@@ -114,7 +118,7 @@ useEffect (()=>{
 
 useEffect (()=>{
   const getFps = async ()=>{
-    const result = await fetch('http://localhost:3000/games', {
+    const result = await fetch(`${API_URL}/games`, {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: ` 
