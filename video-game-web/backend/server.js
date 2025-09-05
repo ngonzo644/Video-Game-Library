@@ -17,8 +17,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
+const clientId =  import.meta.env.VITE_CLIENT_ID|| process.env.CLIENT_ID;
+const clientSecret = import.meta.env.VITE_CLIENT_SECRET || process.env.CLIENT_SECRET;
 
 let token = null;
 
