@@ -98,7 +98,7 @@ app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 const fileName = fileURLToPath(import.meta.url);
 const dirName = path.dirname(fileName);
 
-app.use(express.static(path.join(dirName, '../frontend')));
+app.use(express.static(path.join(dirName, '../frontend/')));
 
 app.get('/.*/', (req, res) => {
   res.sendFile(path.join(dirName, '../frontend/index.html'));
