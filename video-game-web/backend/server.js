@@ -2,6 +2,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+
 
 dotenv.config();
 
@@ -91,6 +93,7 @@ app.post('/genres', async(req, res) =>{
 
 app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
+const express = require('express');
 const path = require('path');
 app.use(express.static(path.join('backend', '../frontend/build')));
 
