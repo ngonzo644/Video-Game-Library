@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "cd ../frontend && yarn && yarn build"
+    "build": "cd ../frontend && npm && npm run build"
   },
   "keywords": [],
   "author": "",
