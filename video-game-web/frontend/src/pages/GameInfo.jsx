@@ -4,12 +4,14 @@ import {useParams} from 'react-router-dom'
 const GameInfo = () => {
   const { id } = useParams();          
   const [game, setGame] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 
   //runs when the id is changed
   useEffect(() => {
     const lookUp = async () => {
       try {
-        const result = await fetch('http://localhost:3000/games', {
+        const result = await fetch(`${API_URL}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
