@@ -11,7 +11,7 @@ const GameInfo = () => {
   useEffect(() => {
     const lookUp = async () => {
       try {
-        const result = await fetch(`${API_URL}`, {
+        const result = await fetch(`${API_URL}/games`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
