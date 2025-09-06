@@ -21,7 +21,7 @@ const Card = ({title, vg}) => {
           <li className = " w-full group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
             {game.cover && (
             <div className="w-full h-64 rounded-xl">
-            <img className="object-cover w-full h-full"
+            <img className="object-contain w-full h-full"
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`} 
               alt="<No Image Found>" 
             />
