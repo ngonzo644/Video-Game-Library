@@ -96,6 +96,7 @@ app.post('/genres', async(req, res) =>{
 
 // app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
