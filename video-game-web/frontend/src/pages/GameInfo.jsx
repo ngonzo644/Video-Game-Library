@@ -41,7 +41,7 @@ const GameInfo = () => {
   const getDeals = async ()=> {
     const resp = await fetch(`https://www.cheapshark.com/api/1.0/games?title=${encodeURIComponent(game.name)}&exact=0`);
     const data = await resp.json();
-    console.log(data[0].gameID);
+    // console.log(data[0].gameID);
     const pID = data[0]?.gameID;
 
     if(!pID){
@@ -65,20 +65,28 @@ const GameInfo = () => {
 
 
   return (
-    <div className="pt-30">
-      <h1 className="text-2xl font-bold">{game.name}</h1>
-      {game.cover && (
-        <img
-          src={game.cover.url}
-          alt={game.name}
-          className="rounded-lg shadow-lg"
-        />
-      )}
-      <p>{game.summary}</p>
-      <p>Rating: {game.rating?.toFixed(1) || 'N/A'}</p>
-      <p>Genre(s): {game.genres?.map(g => g.name).join(', ')}</p>
-      <p>Available on: {game.platforms?.map(p => p.name).join(', ') || 'N/A'}</p>
+    <main className="pt-24"> 
+      <div className="relative h-screen w-full bg-cover bg-center" 
+      style={{
+      backgroundImage: `url(${game.cover?.url.replace("t_thumb", "t_original")})`,
+       }}
+      >
+       {/* gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+  
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+        <h1 className="text-5xl font-bold">{game.name}</h1>
+        <p className="mt-4 max-w-2xl">{game.summary}</p>
+        <p className="mt-2">Rating: {game.rating?.toFixed(1) || 'N/A'}</p>
+        <p className="mt-1">Genre(s): {game.genres?.map(g => g.name).join(', ')}</p>
+        <p className="mt-1">
+          Available on: {game.platforms?.map(p => p.name).join(', ') || 'N/A'}
+        </p>
+      </div>
+
     </div>
+    </main>
+    
   );
 };
 
