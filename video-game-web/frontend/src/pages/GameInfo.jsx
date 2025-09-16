@@ -16,7 +16,7 @@ const GameInfo = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             query: `
-              fields name, rating, cover.url, summary, genres.name, platforms.name;
+              fields name, rating, cover.url, summary, genres.name, platforms.name, first_release_date, release_dates.date, release_dates.human;
               where id = ${id};
             `,
           }),
@@ -82,6 +82,7 @@ const GameInfo = () => {
         <p className="mt-1">
           Available on: {game.platforms?.map(p => p.name).join(', ') || 'N/A'}
         </p>
+        <p className='mt-2'>Released on: {game.release_dates?.find(d => d.date === game.first_release_date)?.human || "Unknown"} </p>
       </div>
 
     </div>
