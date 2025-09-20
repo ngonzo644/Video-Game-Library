@@ -18,9 +18,9 @@ const Header = ({ query, setQuery, games }) => {
 
   return (
     <>
-      <div className="fixed z-100 w-full">
+      <div className="z-100 w-full">
         <div 
-          className="text-center flex flex-row justify-between bg-gray-800 p-10"
+          className="sticky top-0 z-50 text-center flex flex-row justify-between bg-gray-800 p-10"
           onMouseLeave={() => setShowDropdown(false)} 
         >
           <NavLink to="/">

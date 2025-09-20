@@ -14,11 +14,11 @@ const Card = ({title, vg}) => {
     <>
     <h2 className="text-amber-50">
      <TitleCard title={title}/>
-      <ul className="flex flex-wrap justify-center">
+      <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
           vg.map((game) => (
           <NavLink to={`/game/${game.id}`} key={game.id}>
-          <li className = " w-full group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
+          <li className = "group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
             {game.cover && (
             <div className="w-full h-64 rounded-xl">
             <img className="object-contain w-full h-full"
