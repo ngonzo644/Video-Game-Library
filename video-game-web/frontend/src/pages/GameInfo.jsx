@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+
+
 
 const GameInfo = () => {
   const { id } = useParams();          
@@ -65,8 +69,12 @@ const GameInfo = () => {
 
 
   const scroll = (length)=>{
-    changeImage(prev=>(prev==length-1? prev=0 : prev=prev+1));
+    changeImage(prev=>(prev===length-1? prev=0 : prev=prev+1));
     console.log(image);
+  }
+
+  const scroll_b = (length)=>{
+    changeImage(prev=>(prev===0? prev=length-1 : prev=prev-1));
   }
 
 
@@ -78,15 +86,23 @@ const GameInfo = () => {
   
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-black text-center">
         <h1 className="text-5xl font-bold">{game.name}</h1>
-        <img
-        src={`https://images.igdb.com/igdb/image/upload/t_screenshot_big/${game.screenshots[image].image_id}.jpg`}
-        alt={`${game.name} screenshot`}
-        className="mt-6 rounded-lg z-11 max-w-[600px]"
-        />
 
-        <button className="border border-black bg-white" onClick={()=>scroll(game.screenshots.length)}>
-          Click me
-        </button>
+        <div className ="flex flex-row justify-between items-center">
+
+          <button className="transition-transform duration-200 hover:scale-110 hover:shadow-lg rounded-2xl" onClick={()=>scroll_b(game.screenshots.length)}>
+            <IoIosArrowBack size="3em"/>
+          </button>
+          <img
+          src={`https://images.igdb.com/igdb/image/upload/t_screenshot_big/${game.screenshots[image].image_id}.jpg`}
+          alt={`${game.name} screenshot`}
+          className="mt-6 rounded-lg z-11 max-w-[600px]"
+          />
+
+          <button  className="transition-transform duration-200 hover:scale-110 hover:shadow-lg rounded-2xl"onClick={()=>scroll(game.screenshots.length)}>
+            <IoIosArrowForward size="3em"/>
+          </button>
+        </div>
+        
         <div className="text-white flex flex-col items-center">  
           <p className="mt-2 max-w-2xl">{game.summary}</p>
           <p className="mt-2">Rating: {game.rating?.toFixed(1) || 'N/A'}</p>
