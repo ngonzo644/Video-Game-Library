@@ -79,13 +79,13 @@ const GameInfo = () => {
 
 
   return (
-    <main className=""> 
-      <div className="relative flex flex-col h-screen w-full bg-center"> 
-       {/* gradient */}
+    <main className="min-h-screen bg-white"> 
+      <div className="relative flex flex-col min-h-screen w-full bg-center"> 
+      {/* gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" ></div>
   
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-black text-center">
-        <h1 className="text-5xl font-bold">{game.name}</h1>
+        <h1 className="text-5xl font-bold mt-2">{game.name}</h1>
 
         <div className ="flex flex-row justify-between items-center">
 
@@ -118,7 +118,7 @@ const GameInfo = () => {
       </div>
 
 
-   
+  
     </div>
     </main>
     
