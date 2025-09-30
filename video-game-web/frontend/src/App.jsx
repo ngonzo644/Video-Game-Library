@@ -57,7 +57,7 @@ function App() {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({query: `search "${query}"; 
-      fields name,rating; where rating > 75; limit 5;`})
+      fields name, rating, cover.image_id; where rating > 75; limit 5;`})
 
     });
 
