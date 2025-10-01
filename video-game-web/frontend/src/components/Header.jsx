@@ -60,7 +60,7 @@ const Header = ({ query, setQuery, games }) => {
                             {g.name}
                             {
                               imagePreviewID === g.id && (
-                                <img className="absolute right-4 -top-8 ml-2 w-20 rounded shadow-lg "
+                                <img className="absolute -top-8 right-0 mt-2 mr-2 w-24 rounded shadow-lg "
                                   src={`https://images.igdb.com/igdb/image/upload/t_cover_small/${g.cover.image_id}.jpg`} 
                                   alt="<No Image Found>" 
                                 />

@@ -1,1 +1,2 @@
 video-game-web/backend/.env
+*.env
