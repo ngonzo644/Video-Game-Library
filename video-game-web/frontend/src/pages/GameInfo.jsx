@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-import { BeatLoader } from "react-spinners"
+import { BeatLoader } from "react-spinners";
+import {Link} from "react-scroll";
 
 
 
@@ -89,31 +90,41 @@ const GameInfo = () => {
         <h1 className="text-5xl font-bold mt-10">{game.name}</h1>
 
 
-        <div className="flex flex-row bg-black rounded-2xl mt-2">
-          <img className="rounded-2xl w-60"
+        <div className="flex flex-row bg-black rounded-2xl mt-10">
+          <img className="rounded-2xl w-70"
             src={`https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover.image_id}.jpg`} 
             alt="<No Image Found>" 
           />
           {videoId ? (
             <iframe 
               className="rounded-2xl"
-              width="420" 
-              height="345" 
+              width="450" 
+              height="400" 
               src={`https://www.youtube.com/embed/${videoId}`}
               title="Game trailer"
             />
           ) : (
-            <div className="w-[420px] h-[345px] bg-gray-800 rounded-2xl flex items-center justify-center text-white">
+            <div className="w-[450px] h-[400px] bg-gray-800 rounded-2xl flex items-center justify-center text-white">
               <BeatLoader color={'white'}/>
             </div>
           )
           }
           </div>
 
+        <div class="scroll-smooth">
+          <Link
+          to="section2"
+          smooth={true}
+          duration={1200}
+          >
+            More info
+          </Link>
+        </div>
+
         {/* start of game info */}
         
         <div className="text-white flex flex-col items-center">  
-          <p className="mt-100 max-w-2xl">{game.summary}</p>
+          <p className="mt-80 max-w-2xl" id="section2">{game.summary} </p>
           {/* start of screenshot */}
         <div className ="flex flex-row justify-between items-center">
 
