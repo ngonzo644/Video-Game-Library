@@ -4,7 +4,7 @@ import 'ldrs/react/Ring.css'
 import Card from './Card.jsx'
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation.jsx";
 
-const Body = ({trend, goat, fps}) => {
+const Body = ({trend, goat, fps, indie}) => {
   return (
     <>
 
@@ -12,6 +12,7 @@ const Body = ({trend, goat, fps}) => {
       <Card title="Trending Games" vg={trend} />
       <Card title="Must Plays" vg={goat}/>
       <Card title="Iconic Shooters" vg={fps}/>
+      <Card title="Indie Games" vg={indie}/>
       </div>
     </>
   )

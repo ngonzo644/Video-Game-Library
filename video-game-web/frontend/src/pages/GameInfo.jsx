@@ -44,7 +44,7 @@ const GameInfo = () => {
     const fetchVideo = async () => {
       try {   
         const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(game.name + ' video game trailer')}&type=video&maxResults=1&key=${key}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(game.name  + ' video game trailer official')}&type=video&maxResults=1&key=${key}`
         );
         const data = await res.json();
                 
@@ -109,8 +109,13 @@ const GameInfo = () => {
           )
           }
           </div>
-        {/* start of screenshot */}
-        {/* <div className ="flex flex-row justify-between items-center">
+
+        {/* start of game info */}
+        
+        <div className="text-white flex flex-col items-center">  
+          <p className="mt-100 max-w-2xl">{game.summary}</p>
+          {/* start of screenshot */}
+        <div className ="flex flex-row justify-between items-center">
 
           <button className="transition-transform duration-200 hover:scale-110 hover:shadow-lg rounded-2xl" onClick={()=>scroll_b(game.screenshots.length)}>
             <IoIosArrowBack size="3em"/>
@@ -124,19 +129,14 @@ const GameInfo = () => {
           <button  className="transition-transform duration-200 hover:scale-110 hover:shadow-lg rounded-2xl"onClick={()=>scroll(game.screenshots.length)}>
             <IoIosArrowForward size="3em"/>
           </button>
-        </div> */}
+        </div>
         {/* end of screenshot */}
-
-        {/* start of game info */}
-        
-        <div className="text-white flex flex-col items-center">  
-          <p className="mt-100 max-w-2xl">{game.summary}</p>
           <p className="mt-2">Rating: {game.rating?.toFixed(1) || 'N/A'}</p>
           <p className="mt-1">Genre(s): {game.genres?.map(g => g.name).join(', ')}</p>
           <p className="mt-1">
             Available on: {game.platforms?.map(p => p.name).join(', ') || 'N/A'}
           </p>
-          <p className='mt-2 mb-5'>Released on: {game.release_dates?.find(d => d.date === game.first_release_date)?.human || "Unknown"} </p>
+          <p className='mt-2 mb-25'>Released on: {game.release_dates?.find(d => d.date === game.first_release_date)?.human || "Unknown"} </p>
         </div>
         {/* end of game info */}
 

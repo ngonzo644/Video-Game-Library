@@ -19,12 +19,13 @@ function App() {
   const [goat, setGoat] = useState([]);
   const [fps, setFps] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [indies, setIndies] = useState([]);
 
   //if its on render, it'll load it into the env
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 
-  const searchTerm = "Stealth";
+  const searchTerm = "fighting";
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -44,6 +45,7 @@ function App() {
     fetchGenres();
   }, []);
   
+  console.log(genres);
 
 
 
@@ -115,7 +117,7 @@ useEffect (()=>{
   
   getGoat();
 }, []); 
-
+// get fps games
 useEffect (()=>{
   const getFps = async ()=>{
     const result = await fetch(`${API_URL}/games`, {
@@ -138,10 +140,32 @@ useEffect (()=>{
   getFps();
 }, []); 
 
+// fetch for indie games
+useEffect (()=>{
+  const getIndies = async ()=>{
+    const result = await fetch(`${API_URL}/games`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: ` 
+        fields name, total_rating, total_rating_count, cover.image_id, game_modes;
+        where genres=(32) & total_rating>80; 
+        sort total_rating_count desc;
+        limit 7;`})
+  
+      });
+  
+    const data = await result.json();
+    console.log(data);
+    setIndies(data);
+  }
+
+  getIndies();
+}, []); 
+
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
-      <Route index element={<HomePage trend={trend} goat={goat} fps={fps}/>}/>
+      <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies}/>}/>
       <Route path='game/:id' element={<GameInfo/>}/>
 
     </Route>
