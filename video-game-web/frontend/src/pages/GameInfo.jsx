@@ -86,7 +86,20 @@ const GameInfo = () => {
       {/* gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" ></div>
   
+      <div className="fixed right-4 top-1/2 bg-gray-500 text-white p-4 rounded-lg shadow-lg z-50 scroll-smooth cursor-pointer">
+      <Link
+          to="section2"
+          smooth={true}
+          duration={1200}
+          >
+            More info
+          </Link>
+
+      </div>
+
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-black text-center">
+
+
         <h1 className="text-5xl font-bold mt-10">{game.name}</h1>
 
 
@@ -111,15 +124,6 @@ const GameInfo = () => {
           }
           </div>
 
-        <div class="scroll-smooth">
-          <Link
-          to="section2"
-          smooth={true}
-          duration={1200}
-          >
-            More info
-          </Link>
-        </div>
 
         {/* start of game info */}
         
