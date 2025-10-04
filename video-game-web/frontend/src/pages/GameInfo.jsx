@@ -42,6 +42,8 @@ const GameInfo = () => {
 
   // youtube vid API fetch
   useEffect(() => {
+    if(!game?.name) return;
+    if(videoId) return;
     const fetchVideo = async () => {
       try {   
         const res = await fetch(
