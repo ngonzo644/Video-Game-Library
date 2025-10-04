@@ -7,6 +7,7 @@ import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} fr
 import MainLayout from './layouts/MainLayout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import GameInfo from './pages/GameInfo.jsx'
+import ViewMore from './pages/ViewMore.jsx'
 
 
 
@@ -167,6 +168,7 @@ useEffect (()=>{
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
       <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies}/>}/>
       <Route path='game/:id' element={<GameInfo/>}/>
+      <Route path ="category/:id" element={<ViewMore/>}/>
 
     </Route>
   ))

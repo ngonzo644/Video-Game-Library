@@ -12,6 +12,7 @@ const GameInfo = () => {
   const [game, setGame] = useState(null);
   let [image, changeImage] = useState(0);
   const [videoId, setVideoId] = useState(null);
+  const [isBottom, setBottom] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const key = import.meta.env.VITE_API_KEY;
 
@@ -40,28 +41,28 @@ const GameInfo = () => {
     lookUp();
   }, [id]);
 
-  // youtube vid API fetch
-  useEffect(() => {
-    if(!game?.name) return;
-    if(videoId) return;
-    const fetchVideo = async () => {
-      try {   
-        const res = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(game.name  + ' video game trailer official')}&type=video&maxResults=1&key=${key}`
-        );
-        const data = await res.json();
+  // ***** youtube vid API fetch ******
+  // useEffect(() => {
+  //   if(!game?.name) return;
+  //   if(videoId) return;
+  //   const fetchVideo = async () => {
+  //     try {   
+  //       const res = await fetch(
+  //         `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(game.name  + ' video game trailer official')}&type=video&maxResults=1&key=${key}`
+  //       );
+  //       const data = await res.json();
                 
-        if (data.items && data.items.length > 0) {
-          setVideoId(data.items[0].id.videoId);
-        } 
+  //       if (data.items && data.items.length > 0) {
+  //         setVideoId(data.items[0].id.videoId);
+  //       } 
 
-      } catch (error) {
-        console.error('Error fetching YouTube video:', error);
-      }
-    };
+  //     } catch (error) {
+  //       console.error('Error fetching YouTube video:', error);
+  //     }
+  //   };
   
-    fetchVideo();
-  }, [game]);
+  //   fetchVideo();
+  // }, [game]);
 
 
 
@@ -89,20 +90,36 @@ const GameInfo = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" ></div>
   
       <div className="fixed right-4 top-1/2 bg-gray-500 text-white p-4 rounded-lg shadow-lg z-50 scroll-smooth cursor-pointer">
-      <Link
+      {isBottom? 
+        (
+        <Link
+          to="section1"
+          smooth={true}
+          duration={1200}
+          onClick={()=>setBottom(prev=>prev=!prev)}
+          offset={-20}
+          >
+            Back up
+        </Link>
+        ):(
+
+        <Link
           to="section2"
           smooth={true}
           duration={1200}
+          onClick={()=>setBottom(prev=>prev=!prev)}
           >
             More info
-          </Link>
+        </Link>
+        )
+      }
 
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-black text-center">
 
 
-        <h1 className="text-5xl font-bold mt-10">{game.name}</h1>
+        <h1 className="text-5xl font-bold mt-10" id="section1">{game.name}</h1>
 
 
         <div className="flex flex-row bg-black rounded-2xl mt-10">
