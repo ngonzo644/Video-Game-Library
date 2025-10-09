@@ -7,13 +7,13 @@ import {useState} from 'react'
 
 
 
-const Card = ({title, vg}) => {
+const Card = ({title, vg, seeMore, setSeeMore}) => {
 
 
   return (
     <>
     <h2 className="text-amber-50">
-     <TitleCard title={title}/>
+     <TitleCard title={title} setSeeMore={setSeeMore}/>
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
           vg.map((game) => (

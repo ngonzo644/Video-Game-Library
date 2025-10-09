@@ -42,7 +42,9 @@
       transform: translateY(-50%);
     }
   }
+
 }
+
 
 body{
   @apply bg-gray-900;

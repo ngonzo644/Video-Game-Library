@@ -22,6 +22,10 @@ function App() {
   const [genres, setGenres] = useState([]);
   const [indies, setIndies] = useState([]);
 
+  const [seeMore, setSeeMore] = useState(false);
+
+
+
   //if its on render, it'll load it into the env
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -166,7 +170,7 @@ useEffect (()=>{
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
-      <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies}/>}/>
+      <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies} seeMore={seeMore} setSeeMore={setSeeMore}/>}/>
       <Route path='game/:id' element={<GameInfo/>}/>
       <Route path ="category/:id" element={<ViewMore/>}/>
 
