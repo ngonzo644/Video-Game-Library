@@ -88,7 +88,7 @@ useEffect (()=>{
         body: JSON.stringify({query: ` 
         fields name, first_release_date, total_rating, total_rating_count, follows, cover.image_id;
         where first_release_date < ${today} & first_release_date > ${month} &total_rating>80 & hypes!=null; sort total_rating_count desc;
-        limit 7;`})
+        limit 14;`})
   
       });
   
@@ -110,7 +110,7 @@ useEffect (()=>{
         fields name, total_rating, total_rating_count, cover.image_id, game_modes;
         where total_rating > 80 & game_modes=(1) & genres=(12,5); 
         sort total_rating_count desc;
-        limit 7;`})
+        limit 14;`})
   
       });
   
@@ -132,7 +132,7 @@ useEffect (()=>{
         fields name, total_rating, total_rating_count, cover.image_id, game_modes;
         where genres=(5) & total_rating>80 & game_modes=(4); 
         sort total_rating_count desc;
-        limit 7;`})
+        limit 14;`})
   
       });
   
@@ -155,7 +155,7 @@ useEffect (()=>{
         fields name, total_rating, total_rating_count, cover.image_id, game_modes;
         where genres=(32) & total_rating>80; 
         sort total_rating_count desc;
-        limit 7;`})
+        limit 14;`})
   
       });
   
