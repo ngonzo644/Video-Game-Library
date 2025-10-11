@@ -22,7 +22,7 @@ function App() {
   const [genres, setGenres] = useState([]);
   const [indies, setIndies] = useState([]);
 
-  const [seeMore, setSeeMore] = useState(false);
+  const [seeMore, setSeeMore] = useState(null);
 
 
 

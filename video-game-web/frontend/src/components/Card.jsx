@@ -17,7 +17,7 @@ const Card = ({title, vg, seeMore, setSeeMore}) => {
      <TitleCard title={title} setSeeMore={setSeeMore}/>
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
-          !seeMore ? (
+          seeMore!==title ? (
           vg.slice(0, 7).map((game) => (
           <NavLink to={`/game/${game.id}`} key={game.id}>
           <li className = "group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
