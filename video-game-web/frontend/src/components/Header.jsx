@@ -79,8 +79,8 @@ const Header = ({ query, setQuery, games }) => {
             </form>
           </div>
 
-          <div className="flex text-center text-white shrink">
-            Filter
+          <div className="flex text-center text-white shrink transition-transform hover:scale-120 hover:cursor-pointer">
+            Categories
           </div>
         </div>
       </div>

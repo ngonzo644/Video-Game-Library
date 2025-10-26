@@ -14,7 +14,7 @@ const Card = ({title, vg, seeMore, setSeeMore}) => {
   return (
     <>
     <h2 className="text-amber-50">
-     <TitleCard title={title} setSeeMore={setSeeMore}/>
+     <TitleCard title={title} setSeeMore={setSeeMore} seeMore={seeMore}/>
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
           seeMore!==title ? (
