@@ -13,6 +13,7 @@ const Body = ({trend, goat, fps, indie, seeMore, setSeeMore}) => {
       <Card title="Must Plays" vg={goat} seeMore={seeMore} setSeeMore={setSeeMore}/>
       <Card title="Iconic Shooters" vg={fps} seeMore={seeMore} setSeeMore={setSeeMore}/>
       <Card title="Indie Games" vg={indie} seeMore={seeMore} setSeeMore={setSeeMore}/>
+
       </div>
     </>
   )
