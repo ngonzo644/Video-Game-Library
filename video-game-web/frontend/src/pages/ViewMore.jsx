@@ -36,7 +36,7 @@ const ViewMore = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" ></div>
 
         <div className="flex justify-center text-5xl font-bold">
-          Welcome to {id} video games
+          {id} Video Games
         </div>
 
         <p>

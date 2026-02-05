@@ -81,15 +81,22 @@ const Header = ({ query, setQuery, games }) => {
             </form>
           </div>
 
-          <div className="relative">
-            <button className="peer flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
+          <div className="relative group">
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
               Categories
             </button>
-            {/* added a peer so that it detects when clicked */}
-            <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 peer-focus:scale-y-100 origin-top duration-200 transform cursor-pointer">
-              <a className="block px-2 py-1 hover:bg-gray-100 rounded">Playstation</a>
-              <a className="block px-2 py-1 hover:bg-gray-100 rounded">Xbox</a>
-              <a className="block px-2 py-1 hover:bg-gray-100 rounded">PC</a>
+            <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"playstation"}>
+              Playstation
+            </NavLink>
+
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/xbox`} key={"xbox"}>
+              Xbox
+            </NavLink>            
+            
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/PC`} key={"steam"}>
+              PC/Steam
+            </NavLink>
             </div>
           </div>
 
