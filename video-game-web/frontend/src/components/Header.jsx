@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import { GoSearch } from "react-icons/go";
 import {NavLink, useNavigate} from 'react-router-dom'
+import logo from '../images/bookcase.png'
 
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -28,8 +29,10 @@ const Header = ({ query, setQuery, games }) => {
         >
           <NavLink to="/">
 
-            <div className="flex justify-start text-white">
-              Video Game Library
+
+            <img className="w-10 h-10 inline"src={logo} alt="chicke"/>
+            <div className="flex justify-start text-white inline">
+              Game Library
             </div>
           </NavLink>
           
@@ -86,15 +89,15 @@ const Header = ({ query, setQuery, games }) => {
               Categories
             </button>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"playstation"}>
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"Playstation"}>
               Playstation
             </NavLink>
 
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/xbox`} key={"xbox"}>
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/xbox`} key={"Xbox"}>
               Xbox
             </NavLink>            
             
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/PC`} key={"steam"}>
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/PC`} key={"Steam"}>
               PC/Steam
             </NavLink>
             </div>

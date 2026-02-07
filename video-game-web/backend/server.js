@@ -94,6 +94,32 @@ app.post('/genres', async(req, res) =>{
   }
 });
 
+app.post('/platform_families', async(req, res) =>{
+  try{
+    const resG = await fetch('https://api.igdb.com/v4/platform_families', {
+      method:'POST',
+      headers: {
+        'Client-ID': clientId,
+        'Authorization': `Bearer ${token}`,
+        'Accept' : 'application/json'
+      },
+      body: req.body.query
+    });
+
+    const text = await resG.text();
+    if (!resG.ok){
+      console.error("company dont work");
+      return res.status(resG.status).send(text);
+    }
+
+    const companies = JSON.parse(text);
+    res.json(companies);
+  }
+  catch(e){
+    res.status(500).json({error: e.message});
+  }
+});
+
 // app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
 

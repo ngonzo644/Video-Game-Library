@@ -21,6 +21,8 @@ function App() {
   const [fps, setFps] = useState([]);
   const [genres, setGenres] = useState([]);
   const [indies, setIndies] = useState([]);
+  const [platform, setPlatform] = useState([]);
+  const [companyID, setCompanyID] = useState([]);
 
   const [seeMore, setSeeMore] = useState(null);
 
@@ -44,14 +46,31 @@ function App() {
 
         const data = await res.json();
         setGenres(data);
-        console.log(data);
+        // console.log(data);
     };
 
     fetchGenres();
   }, []);
   
-  console.log(genres);
+  const companySearch = "Playstation";
+  // console.log(genres);
+  useEffect(() => {
+    const fetchCompany = async () => {
+        const res = await fetch(`${API_URL}/platform_families`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: `fields id, name; where name ~ *"${companySearch}"*; limit 5;`
+          })
+        });
 
+        const data = await res.json();
+        setCompanyID(data);
+        console.log(data);
+    };
+
+    fetchCompany();
+  }, []);
 
 
   // whenever query(user input) changes, run the API fetch through my backend
@@ -115,7 +134,7 @@ useEffect (()=>{
       });
   
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setGoat(data);
   
   }
@@ -137,7 +156,7 @@ useEffect (()=>{
       });
   
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setFps(data);
   
   }
@@ -160,19 +179,46 @@ useEffect (()=>{
       });
   
     const data = await result.json();
-    console.log(data);
+    // console.log(data);
     setIndies(data);
   }
 
   getIndies();
 }, []); 
 
+//fetch for platform games?
+useEffect (() =>{
+  const getPlatform = async ()=>{
+    const result = await fetch (`${API_URL}/games`, {
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({query: 
+      `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
+      where platforms=(7, 2) & total_rating>80; 
+      sort total_rating_count desc;
+      limit 14;`})
+
+    });
+    const data = await result.json();
+    console.log(data);
+    // console.log("yo?");
+    setPlatform(data);
+
+  }
+
+  getPlatform();
+}, []);
+
+// 5 seems like classic pc games
+// 
+
+
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
       <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies} seeMore={seeMore} setSeeMore={setSeeMore}/>}/>
       <Route path='game/:id' element={<GameInfo/>}/>
-      <Route path ="category/:id" element={<ViewMore/>}/>
+      <Route path ="category/:id" element={<ViewMore platform={platform} setPlatform={setPlatform} seeMore={seeMore} setSeeMore={setSeeMore}/>} />
 
     </Route>
   ))
