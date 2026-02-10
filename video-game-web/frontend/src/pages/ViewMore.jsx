@@ -8,6 +8,34 @@ import Card from '../components/Card.jsx'
 const ViewMore = ({platform, setPlatform, seeMore, setSeeMore}) => {
   const {id} = useParams();
   const [genreInfo, setGenreInfo] = useState(null);
+  const [xbox, setXbox] = useState([]);
+
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+
+  useEffect (() =>{
+    const getXbox = async ()=>{
+      const result = await fetch (`${API_URL}/games`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: 
+        `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
+        where platforms=(11, 12) & platforms !=(6, 38, 130, 21, 29) & total_rating>80; 
+        sort total_rating_count desc;
+        limit 14;`})
+  
+      });
+      const data = await result.json();
+      console.log(data);
+      // console.log("yo?");
+      setXbox(data);
+  
+    }
+  
+    getXbox();
+  }, []);
+
+
 
   useEffect(()=>{
       if (id==="Trending Games" || id==="Must Plays" || id==="Iconic Shooters"){
@@ -43,9 +71,19 @@ const ViewMore = ({platform, setPlatform, seeMore, setSeeMore}) => {
           {id} 
         </div> */}
 
-        
-        <Card title="Playstation Classics" vg={platform} seeMore={seeMore} setSeeMore={setSeeMore} />
-
+        {id === "playstation"? 
+         <Card title="Playstation Classics" vg={platform} seeMore={seeMore} setSeeMore={setSeeMore} />
+        :
+        id ==="xbox"?
+      
+          <Card title = "Xbox classics" vg={xbox} seeMore={seeMore} setSeeMore={setSeeMore}/>
+        :
+        <p>
+          pc games
+        </p>
+      }
+  
+       
         <p>
           {/* {genreInfo.extract} */}
         </p>

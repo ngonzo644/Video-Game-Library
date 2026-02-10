@@ -194,7 +194,7 @@ useEffect (() =>{
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({query: 
       `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
-      where platforms=(7, 2) & total_rating>80; 
+      where platforms=(7, 2) & platforms!=(14) & total_rating>80; 
       sort total_rating_count desc;
       limit 14;`})
 
