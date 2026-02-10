@@ -6,6 +6,7 @@ import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import {useState} from 'react';
 
 const TitleCard = ({title, setSeeMore, seeMore}) => {
+  
 
   return (
     <>

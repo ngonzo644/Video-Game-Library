@@ -216,9 +216,9 @@ useEffect (() =>{
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
-      <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies} seeMore={seeMore} setSeeMore={setSeeMore}/>}/>
+      <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies} />}/>
       <Route path='game/:id' element={<GameInfo/>}/>
-      <Route path ="category/:id" element={<ViewMore platform={platform} setPlatform={setPlatform} seeMore={seeMore} setSeeMore={setSeeMore}/>} />
+      <Route path ="category/:id" element={<ViewMore platform={platform} setPlatform={setPlatform} />} />
 
     </Route>
   ))

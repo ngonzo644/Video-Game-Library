@@ -5,10 +5,12 @@ import Card from '../components/Card.jsx'
 
 
 
-const ViewMore = ({platform, setPlatform, seeMore, setSeeMore}) => {
+const ViewMore = ({platform, setPlatform}) => {
   const {id} = useParams();
   const [genreInfo, setGenreInfo] = useState(null);
   const [xbox, setXbox] = useState([]);
+  const [pc, setPC] = useState([]);
+  const [ps2, setPs2] = useState([]);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -33,6 +35,51 @@ const ViewMore = ({platform, setPlatform, seeMore, setSeeMore}) => {
     }
   
     getXbox();
+  }, []);
+
+
+  useEffect (() =>{
+    const getPC = async ()=>{
+      const result = await fetch (`${API_URL}/games`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: 
+        `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
+        where platforms=(6) & platforms !=(34, 48, 11, 39) & total_rating>80 & id!=(472, 74, 73,434, 538, 501, 500, 533, 75);  
+        sort total_rating_count desc;
+        limit 14;`})
+  
+      });
+      const data = await result.json();
+      console.log(data);
+      // console.log("yo?");
+      setPC(data);
+  
+    }
+  
+    getPC();
+  }, []);
+
+  useEffect (() =>{
+    const getPs2 = async ()=>{
+      const result = await fetch (`${API_URL}/games`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: 
+        `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
+        where platforms=(8) & platforms !=(34, 48, 11, 39) & id!=(231, 327) & total_rating>80;  
+        sort total_rating_count desc;
+        limit 14;`})
+  
+      });
+      const data = await result.json();
+      console.log(data);
+      // console.log("yo?");
+      setPs2(data);
+  
+    }
+  
+    getPs2();
   }, []);
 
 
@@ -72,15 +119,21 @@ const ViewMore = ({platform, setPlatform, seeMore, setSeeMore}) => {
         </div> */}
 
         {id === "playstation"? 
-         <Card title="Playstation Classics" vg={platform} seeMore={seeMore} setSeeMore={setSeeMore} />
+
+        <div className="mb-400 flex gap-4"> 
+            <Card title="Playstation Classics" vg={platform}  />
+
+            <Card  title="PS2" vg={ps2} />
+
+        </div>
+       
         :
         id ==="xbox"?
       
-          <Card title = "Xbox classics" vg={xbox} seeMore={seeMore} setSeeMore={setSeeMore}/>
+          <Card title = "Xbox classics" vg={xbox} />
         :
-        <p>
-          pc games
-        </p>
+        
+        <Card title = "PC greats" vg={pc}  />
       }
   
        

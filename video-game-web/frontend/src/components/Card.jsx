@@ -7,14 +7,15 @@ import {useState} from 'react'
 
 
 
-const Card = ({title, vg, seeMore, setSeeMore}) => {
+const Card = ({title, vg}) => {
 
+  const [seeMore, setSeeMore] = useState(null);
 
   console.log(seeMore);
   return (
     <>
     <div className="text-amber-50">
-     <TitleCard title={title} setSeeMore={setSeeMore} seeMore={seeMore}/>
+     <TitleCard title={title} seeMore={seeMore} setSeeMore={setSeeMore}/>
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
           seeMore!==title ? (
