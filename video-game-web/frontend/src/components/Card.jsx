@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Ring} from 'ldrs/react'
 import 'ldrs/react/Ring.css'
 import TitleCard from './TitleCard.jsx'
@@ -10,6 +10,9 @@ import {useState} from 'react'
 const Card = ({title, vg}) => {
 
   const [seeMore, setSeeMore] = useState(null);
+
+
+  
 
   console.log(seeMore);
   return (
