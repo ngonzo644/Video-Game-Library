@@ -126,8 +126,8 @@ useEffect (()=>{
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({query: ` 
-        fields name, total_rating, total_rating_count, cover.image_id, game_modes;
-        where total_rating > 80 & game_modes=(1) & genres=(12,5); 
+        fields name, id, total_rating, total_rating_count, cover.image_id, game_modes;
+        where total_rating > 80 & game_modes=(1) & genres=(12,5) & id!=(732,20, 434, 11156, 1164, 733, 74, 538, 73, 7351, 533); 
         sort total_rating_count desc;
         limit 14;`})
   

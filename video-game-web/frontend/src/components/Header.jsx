@@ -7,6 +7,8 @@ import logo from '../images/bookcase.png'
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [imagePreviewID, setImagePreviewID] = useState(null);
+  const  currentURL = window.location.pathname;
+  console.log(currentURL);
   const navigate= useNavigate();
 
   const gameInput = (e) => {
@@ -30,11 +32,27 @@ const Header = ({ query, setQuery, games }) => {
           <NavLink to="/">
 
 
+          <div className="relative group">
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
+
             <img className="w-10 h-10 inline"src={logo} alt="chicke"/>
             <div className="flex justify-start text-white inline">
-              Game Library
+              {(currentURL=='/'? <p>Game Library</p> : <p> Return Home</p>) }
+            </div>
+            <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
+              <p className="block px-2 py-1 hover:bg-gray-100 rounded">
+                Trending Games
+              </p>
+              <p className="block px-2 py-1 hover:bg-gray-100 rounded">
+                Top 100
+              </p>
+            </div>
+
+            </button>
+       
             </div>
           </NavLink>
+
           
 
           <div className="flex flex-1 justify-center text-white ">
@@ -86,7 +104,7 @@ const Header = ({ query, setQuery, games }) => {
 
           <div className="relative group">
             <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
-              Categories
+              Platforms
             </button>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
             <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"Playstation"}>
