@@ -11,6 +11,7 @@ const ViewMore = ({platform, setPlatform}) => {
   const [xbox, setXbox] = useState([]);
   const [pc, setPC] = useState([]);
   const [ps2, setPs2] = useState([]);
+  const [ps4, setPs4] = useState([]);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -107,6 +108,28 @@ const ViewMore = ({platform, setPlatform}) => {
       fetchWikiSum();
   }, [id]);
 
+  useEffect (() =>{
+    const getPs4 = async ()=>{
+      const result = await fetch (`${API_URL}/games`, {
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({query: 
+        `fields name, id, total_rating, total_rating_count, cover.image_id, platforms;
+        where platforms=(48) & platforms !=(34, 9, 41, 508, 11, 39, 46, 49) & id!=(7351, 1942, 25076) & total_rating>80;  
+        sort total_rating_count desc;
+        limit 14;`})
+  
+      });
+      const data = await result.json();
+      console.log(data);
+      // console.log("yo?");
+      setPs4(data);
+  
+    }
+  
+    getPs4();
+  }, []);
+
   
 
   return (
@@ -124,6 +147,8 @@ const ViewMore = ({platform, setPlatform}) => {
             <Card title="Playstation Classics" vg={platform}  />
 
             <Card  title="PS2" vg={ps2} />
+
+            <Card title="PS4" vg={ps4} />
 
         </div>
        
