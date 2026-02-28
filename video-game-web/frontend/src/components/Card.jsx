@@ -11,6 +11,9 @@ const Card = ({title, vg}) => {
 
   const [seeMore, setSeeMore] = useState(null);
 
+  const varLengthHalf = vg.length /2;
+  const varLength = vg.length;
+
 
   
 
@@ -22,7 +25,7 @@ const Card = ({title, vg}) => {
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
           seeMore!==title ? (
-          vg.slice(0, 7).map((game) => (
+          vg.slice(0, varLengthHalf).map((game) => (
           <NavLink to={`/game/${game.id}`} key={game.id}>
               <li className = "group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
             {game.cover && (
@@ -47,7 +50,7 @@ const Card = ({title, vg}) => {
         ))
         ):(
 
-          vg.slice(7, 14).map((game) => (
+          vg.slice(varLengthHalf, varLength).map((game) => (
             <NavLink to={`/game/${game.id}`} key={game.id}>
             <li className = "group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:shadow-lg hover:bg-amber-100 ease-in hover:font-bold hover:text-black"key={game.id}>
               {game.cover && (

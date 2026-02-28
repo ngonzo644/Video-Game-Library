@@ -37,15 +37,12 @@ const Header = ({ query, setQuery, games }) => {
 
             <img className="w-10 h-10 inline"src={logo} alt="chicke"/>
             <div className="flex justify-start text-white inline">
-              {(currentURL=='/'? <p>Game Library</p> : <p> Return Home</p>) }
+              {(currentURL=='/'? <p className="mt-1">Game Library</p> : <p className="mt-1"> Return Home</p>) }
             </div>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
-              <p className="block px-2 py-1 hover:bg-gray-100 rounded">
-                Trending Games
-              </p>
-              <p className="block px-2 py-1 hover:bg-gray-100 rounded">
-                Top 100
-              </p>
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
+              Top 100 
+            </NavLink>
             </div>
 
             </button>

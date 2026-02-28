@@ -12,6 +12,7 @@ const ViewMore = ({platform, setPlatform}) => {
   const [pc, setPC] = useState([]);
   const [ps2, setPs2] = useState([]);
   const [ps4, setPs4] = useState([]);
+  const [hundo, setHundo] = useState([]);
 
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -130,12 +131,34 @@ const ViewMore = ({platform, setPlatform}) => {
     getPs4();
   }, []);
 
+  useEffect (()=>{
+    const getHundo = async ()=>{
+      const result = await fetch(`${API_URL}/games`, {
+          method:'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({query: ` 
+          fields name, id, total_rating, total_rating_count, cover.image_id, game_modes; 
+          sort total_rating_count desc;
+          limit 100;`})
+    
+        });
+    
+      const data = await result.json();
+      // console.log(data);
+      setHundo(data);
+    
+    }
+    
+    getHundo();
+  }, []); 
+
+
   
 
   return (
     <main  className="bg-white min-h-screen">
       <div className="relative flex flex-col min-h-screen w-full bg-center">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 pointer-events-none" ></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent pointer-events-none" ></div>
 
         {/* <div className="flex justify-center text-5xl font-bold">
           {id} 
@@ -157,8 +180,12 @@ const ViewMore = ({platform, setPlatform}) => {
       
           <Card title = "Xbox classics" vg={xbox} />
         :
+        id ==="Steam"?
         
-        <Card title = "PC greats" vg={pc}  />
+        <Card title = "PC greats" vg={pc}  /> :
+
+          <Card title = "Top 100 (No particular order)" vg={hundo} />
+
       }
   
        
