@@ -122,15 +122,21 @@ app.post('/platform_families', async(req, res) =>{
 
 // app.listen(PORT, ()=> console.log(`Backend running on ${PORT}`));
 
-
+//what is the curr file?
 const __filename = fileURLToPath(import.meta.url);
+// where is this file?
 const __dirname = path.dirname(__filename);
 
+//allow easy access for whenever backend gets request to recognize where in the frontend it
+// exactly is, essentially getting rid of hardcoding every single route possible
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// send index.html if fetch was an undefined route 
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
+//start server
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 })

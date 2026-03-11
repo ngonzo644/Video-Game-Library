@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { GoSearch } from "react-icons/go";
 import {NavLink, useNavigate} from 'react-router-dom'
 import logo from '../images/bookcase.png'
+import { IoMdStarOutline } from "react-icons/io";
 
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -52,7 +53,7 @@ const Header = ({ query, setQuery, games }) => {
 
           
 
-          <div className="flex flex-1 justify-center text-white ">
+          <div className="flex flex-1 justify-center text-white ml-25">
             <form action="" className="w-full max-w-md" onSubmit={enter}>
               <div className="relative">
                 <GoSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none"/>
@@ -100,7 +101,18 @@ const Header = ({ query, setQuery, games }) => {
           </div>
 
           <div className="relative group">
-            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
+            <NavLink to={`/favorites`}>
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
+              Favorites
+              {/* when outer parent div hovers, change the text to yellow */}
+              <IoMdStarOutline className = "mt-1.25 ml-1.25 transition-transform group-hover:text-yellow-400" />
+            </button>
+
+            </NavLink>
+          </div>
+
+          <div className="relative group">
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
               Platforms
             </button>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
