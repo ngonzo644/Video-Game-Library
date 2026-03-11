@@ -184,7 +184,7 @@ const ViewMore = ({platform, setPlatform}) => {
         
         <Card title = "PC greats" vg={pc}  /> :
 
-        <Card title = "Top 100 (No particular order)" vg={hundo} />
+        <Card title = "100 (Great) Games to Play" vg={hundo} />
 
       }
   

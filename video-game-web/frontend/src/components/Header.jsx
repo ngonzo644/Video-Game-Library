@@ -4,6 +4,10 @@ import { GoSearch } from "react-icons/go";
 import {NavLink, useNavigate} from 'react-router-dom'
 import logo from '../images/bookcase.png'
 import { IoMdStarOutline } from "react-icons/io";
+import { GiSpellBook } from "react-icons/gi";
+import { GiWhiteBook } from "react-icons/gi";
+import { GiPerspectiveDiceSixFacesThree } from "react-icons/gi";
+import { IoMdStar } from "react-icons/io";
 
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -34,22 +38,37 @@ const Header = ({ query, setQuery, games }) => {
 
 
           <div className="relative group">
-            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl hover:border-">
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
 
-            <img className="w-10 h-10 inline"src={logo} alt="chicke"/>
+            {(currentURL=='/'? <GiSpellBook className="mr-5 text-3xl transition-transform group-hover:text-blue-400"/> : <GiWhiteBook className="mr-5 text-3xl transition-transform group-hover:text-blue-400"/>) }
             <div className="flex justify-start text-white inline">
               {(currentURL=='/'? <p className="mt-1">Game Library</p> : <p className="mt-1"> Return Home</p>) }
             </div>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
             <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
-              Top 100 
+              Welcome
             </NavLink>
+
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
+              100 good games to play! 
+            </NavLink>
+
             </div>
+
 
             </button>
        
             </div>
           </NavLink>
+
+
+          <div className="relative group">
+            <button className="mt-1 flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl items-center">
+              Random!
+              <GiPerspectiveDiceSixFacesThree className = "flex text-2xl transition-transform group-hover:text-orange-400 group-hover:animate-spin" />
+            </button>
+
+          </div>
 
           
 
@@ -102,10 +121,12 @@ const Header = ({ query, setQuery, games }) => {
 
           <div className="relative group">
             <NavLink to={`/favorites`}>
-            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
+            <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl items-center">
               Favorites
               {/* when outer parent div hovers, change the text to yellow */}
-              <IoMdStarOutline className = "mt-1.25 ml-1.25 transition-transform group-hover:text-yellow-400" />
+              {/* on top, have a new star when hovering over */}
+              <IoMdStarOutline className="ml-1 mb-.5 transition-all text-yellow-400 text-2xl group-hover:hidden" />
+              <IoMdStar className="ml-1 mb-.5 transition-all text-yellow-400 text-2xl hidden group-hover:block" />
             </button>
 
             </NavLink>
