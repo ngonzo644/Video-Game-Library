@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage.jsx'
 import GameInfo from './pages/GameInfo.jsx'
 import ViewMore from './pages/ViewMore.jsx'
 import Favorites from './pages/Favorites.jsx'
+import Info from './pages/Info.jsx'
 
 
 
@@ -221,6 +222,7 @@ useEffect (() =>{
       <Route path='game/:id' element={<GameInfo/>}/>
       <Route path ="category/:id" element={<ViewMore platform={platform} setPlatform={setPlatform} />} />
       <Route path ="favorites" element={<Favorites />} />
+      <Route path ="welcome" element={<Info />} />
 
     </Route>
   ))
