@@ -12,7 +12,29 @@ const Body = ({trend, goat, fps, indie}) => {
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
   const [gameoty, setGameoty] = useState([]);
+  const [fighting, setFighting] = useState([]);
 
+  useEffect (()=>{
+    const getFighting = async ()=>{
+      const result = await fetch(`${API_URL}/games`, {
+          method:'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({query: ` 
+          fields name, total_rating, total_rating_count, cover.image_id, game_modes;
+          where genres=(4) & total_rating>84; 
+          sort total_rating_count desc;
+          limit 14;`})
+    
+        });
+    
+      const data = await result.json();
+      // console.log(data);
+      setFighting(data);
+    
+    }
+    
+    getFighting();
+  }, []); 
   useEffect (() =>{
     const getOTY = async ()=>{
       const result = await fetch (`${API_URL}/games`, {
@@ -43,7 +65,9 @@ const Body = ({trend, goat, fps, indie}) => {
       <Card title="Must Plays" vg={goat} />
       <Card title="Iconic Shooters" vg={fps} />
       <Card title="Indie Games" vg={indie} />
+      <Card title="Fighting Games" vg={fighting}/>
       <Card title= "Game of The Year" vg={gameoty} />
+      
 
       </div>
     </>

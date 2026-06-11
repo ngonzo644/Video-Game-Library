@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { GoSearch } from "react-icons/go";
 import {NavLink, useNavigate} from 'react-router-dom'
 import logo from '../images/bookcase.png'
@@ -12,6 +12,7 @@ import { IoMdStar } from "react-icons/io";
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [imagePreviewID, setImagePreviewID] = useState(null);
+  // const [randomGame, setRandomGame] = useState(null);
   const  currentURL = window.location.pathname;
   console.log(currentURL);
   const navigate= useNavigate();
@@ -26,6 +27,16 @@ const Header = ({ query, setQuery, games }) => {
   }
 
   const items = ['playstation', 'xbox', 'PC', 'switch'];
+
+//  useEffect(()=>{
+//   setRandomGame(Math.floor(Math.random()*((5000-0)+1)));
+//   console.log(randomGame);
+//  }, []);
+
+  const goToRandGame = () =>{
+    const randomGame = Math.floor(Math.random()*((34000-0)+1));
+    navigate(`/game/${randomGame}`);
+  }
 
   return (
     <>
@@ -45,12 +56,12 @@ const Header = ({ query, setQuery, games }) => {
               {(currentURL=='/'? <p className="mt-1">Game Library</p> : <p className="mt-1"> Return Home</p>) }
             </div>
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
+            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/welcome`} key={"w2"}>
               Welcome
             </NavLink>
 
             <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
-              100 good games to play! 
+              Top 100 games 
             </NavLink>
 
             </div>
@@ -63,7 +74,8 @@ const Header = ({ query, setQuery, games }) => {
 
 
           <div className="relative group">
-            <button className="mt-1 flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl items-center">
+            {/* give css to navlink?  */}
+            <button className="mt-1 flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl items-center" onClick={goToRandGame}>
               Random!
               <GiPerspectiveDiceSixFacesThree className = "flex text-2xl transition-transform group-hover:text-orange-400 group-hover:animate-spin" />
             </button>
@@ -124,7 +136,7 @@ const Header = ({ query, setQuery, games }) => {
             <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl items-center">
               Favorites
               {/* when outer parent div hovers, change the text to yellow */}
-              {/* on top, have a new star when hovering over */}
+              {/* on top, have diff icons when hovering over with hover:hidden & hidden hover:block*/}
               <IoMdStarOutline className="ml-1 mb-.5 transition-all text-yellow-400 text-2xl group-hover:hidden" />
               <IoMdStar className="ml-1 mb-.5 transition-all text-yellow-400 text-2xl hidden group-hover:block" />
             </button>
@@ -136,6 +148,7 @@ const Header = ({ query, setQuery, games }) => {
             <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
               Platforms
             </button>
+            
             <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
             <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"Playstation"}>
               Playstation

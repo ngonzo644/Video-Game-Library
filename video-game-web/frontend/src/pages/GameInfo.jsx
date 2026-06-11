@@ -25,14 +25,17 @@ const GameInfo = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             query: `
-              fields name, rating, cover.url, cover.image_id, summary, genres.name, platforms.name, first_release_date, release_dates.date, release_dates.human, screenshots.image_id;
+              fields name, rating, cover.url, cover.image_id, summary, genres.name, platforms.name, first_release_date, release_dates.date, release_dates.human, screenshots.image_id, videos.video_id;
               where id = ${id};
             `,
           }),
         });
 
         const data = await result.json();
+        console.log(data);
         setGame(data[0]);  
+        setVideoId(data[0].videos[0].video_id);
+        console.log(videoId);
       } catch (err) {
         console.error(err);
       }

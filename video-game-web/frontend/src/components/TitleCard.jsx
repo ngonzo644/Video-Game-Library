@@ -16,7 +16,7 @@ const TitleCard = ({title, setSeeMore, seeMore}) => {
         </span>
 
         
-          <button className="absolute right-4 border rounded-2xl px-2 py-0.5 bg-gray-600 border-gray-600 transition-transform hover:scale-110 hover:cursor-pointer flex items-center animate-pulse [animation-duration:5s]" onClick={()=>setSeeMore((prev)=>prev===title? prev=null: prev=title)} >
+          {/* <button className="absolute right-4 border rounded-2xl px-2 py-0.5 bg-gray-600 border-gray-600 transition-transform hover:scale-110 hover:cursor-pointer flex items-center animate-pulse [animation-duration:5s]" onClick={()=>setSeeMore((prev)=>prev===title? prev=null: prev=title)} >
 
               {seeMore===title ? 
               (
@@ -33,7 +33,7 @@ const TitleCard = ({title, setSeeMore, seeMore}) => {
               )}
 
 
-          </button>
+          </button> */}
 
       </div>
     </>

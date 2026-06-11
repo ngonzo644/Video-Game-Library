@@ -181,10 +181,13 @@ const ViewMore = ({platform, setPlatform}) => {
           <Card title = "Xbox classics" vg={xbox} />
         :
         id ==="PC"?
-        
-        <Card title = "PC greats" vg={pc}  /> :
 
-        <Card title = "100 (Great) Games to Play" vg={hundo} />
+        <Card title = "PC greats" vg={pc}  /> 
+        
+        :
+        
+        <Card title = "In no particular order..." vg={hundo} /> 
+        
 
       }
   

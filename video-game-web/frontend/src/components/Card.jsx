@@ -3,6 +3,10 @@ import {Ring} from 'ldrs/react'
 import 'ldrs/react/Ring.css'
 import TitleCard from './TitleCard.jsx'
 import { NavLink } from 'react-router-dom';
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+
+
 // import {useState} from 'react'
 
 
@@ -20,7 +24,8 @@ const Card = ({title, vg}) => {
   console.log(seeMore);
   return (
     <>
-    <div className="text-amber-50">
+    <div className="text-amber-50 ">
+
      <TitleCard title={title} seeMore={seeMore} setSeeMore={setSeeMore}/>
       <ul className="flex flex-wrap justify-center gap-2">
         {vg.length > 0 ? (
@@ -85,9 +90,20 @@ const Card = ({title, vg}) => {
           className="flex flex-col items-center"
         />)
       }
+       <button  className="p-2 transition-all duration-200 hover:scale-140" onClick={()=>setSeeMore((prev)=>prev===title? prev=null: prev=title)}>
+          {seeMore===title ? 
+          <IoIosArrowBack size="3em"/>
+          :
+          <IoIosArrowForward size="3em"/>
+          }
+
+      </button>
       </ul>
       </div>
+
+     
     </>
+
   )
 }
 
