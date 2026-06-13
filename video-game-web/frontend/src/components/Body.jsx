@@ -21,9 +21,9 @@ const Body = ({trend, goat, fps, indie}) => {
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({query: ` 
           fields name, total_rating, total_rating_count, cover.image_id, game_modes;
-          where genres=(4) & total_rating>84; 
+          where genres=(4) & total_rating>82 & id!=(3156, 10039, 6030, 25838, 188, 5623, 119342, 1626, 13106); 
           sort total_rating_count desc;
-          limit 14;`})
+          limit 49;`})
     
         });
     
