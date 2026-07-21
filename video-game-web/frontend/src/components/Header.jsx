@@ -12,10 +12,12 @@ import { IoMdStar } from "react-icons/io";
 const Header = ({ query, setQuery, games }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [imagePreviewID, setImagePreviewID] = useState(null);
-  // const [randomGame, setRandomGame] = useState(null);
+  // const [randomGamey, setRandomGame] = useState(null);
   const  currentURL = window.location.pathname;
   console.log(currentURL);
   const navigate= useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 
   const gameInput = (e) => {
     setQuery(e.target.value);
@@ -33,10 +35,32 @@ const Header = ({ query, setQuery, games }) => {
 //   console.log(randomGame);
 //  }, []);
 
-  const goToRandGame = () =>{
-    const randomGame = Math.floor(Math.random()*((34000-0)+1));
-    navigate(`/game/${randomGame}`);
-  }
+const goToRandGame = async () => {
+  let id;
+  let data = [];
+
+  do {
+      id = Math.floor(Math.random() * 34001);
+
+      const result = await fetch(`${API_URL}/games`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              query: `
+                  fields name;
+                  where id = ${id};
+              `,
+          }),
+      });
+
+      data = await result.json();
+
+  } while (data.length === 0);
+
+  navigate(`/game/${id}`);
+};
 
   return (
     <>
