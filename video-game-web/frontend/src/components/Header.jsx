@@ -169,23 +169,12 @@ const goToRandGame = async () => {
           </div>
 
           <div className="relative group">
+            <NavLink to={'/categories'}>
             <button className="flex text-center text-white transition-transform hover:scale-110 cursor-pointer text-lg px-3 py-1 hover:border hover:rounded-xl">
               Platforms
             </button>
-            
-            <div className="absolute top-full  rounded-lg p-3 mt-1 shadow-md bg-white text-black scale-y-0 group-hover:scale-y-100 origin-top duration-200 transform cursor-pointer">
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/playstation`} key={"Playstation"}>
-              Playstation
             </NavLink>
-
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/xbox`} key={"Xbox"}>
-              Xbox
-            </NavLink>            
-            
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/PC`} key={"Steam"}>
-              PC/Steam
-            </NavLink>
-            </div>
+          
           </div>
 
        

@@ -4,12 +4,19 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { BeatLoader } from "react-spinners";
 import {Link} from "react-scroll";
+import { IoMdStarOutline } from "react-icons/io";
+import { IoMdStar } from "react-icons/io";
+
 
 
 
 const GameInfo = () => {
   const { id } = useParams();          
   const [game, setGame] = useState(null);
+
+  const [fav, setFav] = useState(false);
+  
+  
   let [image, changeImage] = useState(0);
   const [videoId, setVideoId] = useState(null);
   const [isBottom, setBottom] = useState(false);
@@ -44,6 +51,16 @@ const GameInfo = () => {
     lookUp();
   }, [id]);
 
+  useEffect(() => {
+    if (!game?.id) return;
+  
+    const favorites = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+  
+    setFav(favorites.includes(game.id));
+  }, [game]);
+
   // ***** youtube vid API fetch ******
   // useEffect(() => {
   //   if(!game?.name) return;
@@ -74,6 +91,38 @@ const GameInfo = () => {
   }
 
 
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+  
+    if (favorites.includes(game.id)) {
+      // Remove
+      const updatedFavorites = favorites.filter(
+        id => id !== game.id
+      );
+  
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(updatedFavorites)
+      );
+  
+      setFav(false);
+  
+    } else {
+      const updatedFavorites = [
+        ...favorites,
+        game.id
+      ];
+  
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(updatedFavorites)
+      );
+  
+      setFav(true);
+    }
+  };
 
 
   const scroll = (length) => {
@@ -145,6 +194,18 @@ const GameInfo = () => {
           )
           }
           </div>
+
+        <div className="relative group">
+          <button className="flex items-center px-3 py-1 text-lg text-white cursor-pointer transition-transform hover:scale-110" onClick={toggleFavorite} >
+            {fav ? "Remove from favorites" : "Add to favorites"}
+
+            {fav ? (
+              <IoMdStar className="ml-1 mb-0.5 text-2xl text-yellow-400" />
+            ) : (
+              <IoMdStarOutline className="ml-1 mb-0.5 text-2xl text-white" />
+            )}
+          </button>
+        </div>
 
 
         {/* start of game info */}

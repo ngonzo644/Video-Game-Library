@@ -4,6 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {AsyncLocalStorage} from "node:async_hooks";
+
 
 
 
@@ -11,6 +13,8 @@ import { fileURLToPath } from 'url';
 dotenv.config();
 
 const app = express();
+
+const logStorage = new AsyncLocalStorage();
 
 const PORT = 3000;
 
@@ -38,6 +42,77 @@ const getToken = async ()=>{
 };
 
 await getToken();
+
+app.post('/favorite-games', async (req, res) => {
+  try {
+    const { gameIds } = req.body;
+
+    // Make sure gameIds exists and is an array
+    if (!Array.isArray(gameIds)) {
+      return res.status(400).json({
+        error: 'gameIds must be an array'
+      });
+    }
+
+    // If there are no favorites, just return an empty array
+    if (gameIds.length === 0) {
+      return res.json([]);
+    }
+
+    // Make sure all IDs are numbers
+    const ids = gameIds
+      .map(Number)
+      .filter(id => Number.isInteger(id));
+
+    if (ids.length === 0) {
+      return res.json([]);
+    }
+
+    //  IGDB query
+    const query = `
+      fields
+        id,
+        name,
+        cover.image_id,
+        first_release_date,
+        genres.name;
+      where id = (${ids.join(',')});
+    `;
+
+    const response = await fetch(
+      'https://api.igdb.com/v4/games',
+      {
+        method: 'POST',
+        headers: {
+          'Client-ID': clientId,
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        },
+        body: query
+      }
+    );
+
+    const text = await response.text();
+
+    if (!response.ok) {
+      console.error('fav search error:', text);
+      return res.status(response.status).send(text);
+    }
+
+    const games = JSON.parse(text);
+
+    res.json(games);
+
+  } catch (error) {
+    console.error('Favorite games error:', error);
+
+    res.status(500).json({
+      error: error.message
+    });
+  }
+});
+
+
 
 app.post('/games', async (req, res) =>{
   try{

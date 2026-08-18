@@ -220,7 +220,7 @@ useEffect (() =>{
     <Route path ='/' element={<MainLayout query={query} setQuery={setQuery} games={games}/>}>
       <Route index element={<HomePage trend={trend} goat={goat} fps={fps} indie={indies} />}/>
       <Route path='game/:id' element={<GameInfo/>}/>
-      <Route path ="category/:id" element={<ViewMore platform={platform} setPlatform={setPlatform} />} />
+      <Route path ="categories" element={<ViewMore platform={platform} setPlatform={setPlatform} />} />
       <Route path ="favorites" element={<Favorites />} />
       <Route path ="welcome" element={<Info />} />
 
