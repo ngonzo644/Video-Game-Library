@@ -53,13 +53,13 @@ const Card = ({title, vg}) => {
           <IoIosArrowBack size="3em" />
         </button>
   
-        <ul className="flex flex-wrap justify-center gap-2">
+        <ul className="flex flex-nowrap justify-center gap-3">
           {vg.length > 0 ? (
             vg.slice(start, end).map((game) => (
               <NavLink to={`/game/${game.id}`} key={game.id}>
-                <li className="group inline-flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:bg-amber-100 ease-in hover:font-bold hover:text-black">
+                <li className="group w-[140px] shrink-0 flex flex-col items-center transition-transform duration-200 hover:scale-110 hover:bg-amber-100 ease-in hover:font-bold hover:text-black">
                   {game.cover && (
-                    <div className="w-full h-64 rounded-xl">
+                    <div className="w-[140px] h-64">
                       <img
                         className="object-contain w-full h-full"
                         src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`}
