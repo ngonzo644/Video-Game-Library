@@ -84,9 +84,9 @@ const goToRandGame = async () => {
               Welcome
             </NavLink>
 
-            <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
+            {/* <NavLink className="block px-2 py-1 hover:bg-gray-100 rounded" to={`/category/top100`} key={"100"}>
               Top 100 games 
-            </NavLink>
+            </NavLink> */}
 
             </div>
 
